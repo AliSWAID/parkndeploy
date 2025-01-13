@@ -6,6 +6,11 @@ namespace ParkNDeploy.Api.Endpoints
     {
         public static void MapParkingsAngersEndpoints(this WebApplication app)
         {
+                        // Add this line for the root endpoint
+            app.MapGet("/", () => "Welcome")
+               .WithName("Root")
+               .WithOpenApi();
+               
             app.MapGet("/parkings-angers", async (OpenDataAngersService openDataAngersService, string? parkingName) =>
             {
                 var parkings = await openDataAngersService.GetParkingsAsync(parkingName);
